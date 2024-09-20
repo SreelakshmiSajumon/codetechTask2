@@ -1,0 +1,55 @@
+# Student Grade Tracker in Python
+
+
+def calculate_letter_grade_and_gpa(average):
+    if 90 <= average <= 100:
+        return 'A', 4.0
+    elif 80 <= average < 90:
+        return 'B', 3.0
+    elif 70 <= average < 80:
+        return 'C', 2.0
+    elif 60 <= average < 70:
+        return 'D', 1.0
+    else:
+        return 'F', 0.0
+
+
+def grade_tracker():
+    print("Student Grade Tracker")
+    
+    grades = []  # List to store the grades
+    
+    # Input the number of subjects
+    try:
+        num_subjects = int(input("Enter the number of subjects: "))
+    except ValueError:
+        print("Invalid input! Please enter a valid number.")
+        return
+    
+
+    for i in range(num_subjects):
+        try:
+            grade = float(input(f"Enter the grade for subject {i + 1} (0-100): "))
+            if 0 <= grade <= 100:
+                grades.append(grade)
+            else:
+                print("Grade must be between 0 and 100. Try again.")
+                return
+        except ValueError:
+            print("Invalid input! Please enter a number between 0 and 100.")
+            return
+    
+
+    average_grade = sum(grades) / num_subjects
+    
+
+    letter_grade, gpa = calculate_letter_grade_and_gpa(average_grade)
+    
+
+    print("\n--- Grade Summary ---")
+    print(f"Average Grade: {average_grade:.2f}")
+    print(f"Letter Grade: {letter_grade}")
+    print(f"GPA: {gpa:.1f}")
+
+
+grade_tracker()
